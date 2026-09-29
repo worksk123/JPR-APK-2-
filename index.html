@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7fbff">
+<meta name="description" content="Prwallet Pay — a simple Android wallet and rewards experience.">
+<title>Prwallet Pay — Earn. Track. Enjoy.</title>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1095958073287355');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1095958073287355&ev=PageView&noscript=1" alt=""></noscript>
+
+<style>
+:root{
+  --ink:#12203a;
+  --muted:#68758b;
+  --soft:#f7fbff;
+  --card:#fff;
+  --line:#e5edf7;
+  --cyan:#08cfe2;
+  --blue:#2166ff;
+  --navy:#0b2452;
+  --green:#16b979;
+  --shadow:0 22px 60px rgba(31,71,125,.13);
+  --shadow2:0 12px 30px rgba(33,102,255,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 80% 0%,rgba(8,207,226,.13),transparent 22rem),
+  radial-gradient(circle at 5% 25%,rgba(33,102,255,.08),transparent 25rem),
+  linear-gradient(180deg,#fbfdff 0%,#f6faff 100%);
+  color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+.topbar{
+  position:sticky;top:0;z-index:30;background:rgba(255,255,255,.76);
+  backdrop-filter:blur(18px);border-bottom:1px solid rgba(209,224,242,.65)
+}
+.nav{height:70px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.04em}
+.brand img{width:40px;height:40px;border-radius:12px;box-shadow:0 6px 18px rgba(33,102,255,.14)}
+.brand span{font-size:19px}
+.nav-download{
+  padding:10px 15px;border-radius:13px;background:#eef5ff;color:#1d5be1;font-size:13px;font-weight:850
+}
+.hero{padding:52px 0 30px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:48px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+  color:#1761d9;background:#eef7ff;border:1px solid #dcecff;font-size:12px;font-weight:850
+}
+.badge i{width:8px;height:8px;border-radius:50%;background:#13c886;box-shadow:0 0 0 5px rgba(19,200,134,.12)}
+h1{font-size:clamp(45px,7vw,76px);line-height:.98;letter-spacing:-.07em;margin:18px 0 17px;max-width:700px}
+.grad{background:linear-gradient(100deg,#123a9c,#1672ff 45%,#09cfe0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;line-height:1.65;color:var(--muted);max-width:620px;margin:0 0 25px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.download{
+  min-height:56px;padding:0 21px;border-radius:17px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  color:#fff;background:linear-gradient(135deg,#0acfe1,#2166ff);font-weight:900;font-size:15px;
+  box-shadow:var(--shadow2);border:0;cursor:pointer;transition:.22s ease;position:relative;overflow:hidden
+}
+.download:before{
+  content:"";position:absolute;top:0;left:-90px;width:55px;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.42),transparent);transform:skewX(-20deg);
+  animation:shine 3.8s infinite
+}
+.download:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(33,102,255,.25)}
+.download:active{transform:scale(.985)}
+.secondary{
+  min-height:56px;padding:0 19px;border-radius:17px;display:inline-flex;align-items:center;
+  background:#fff;border:1px solid var(--line);color:#34435b;font-weight:800
+}
+.note{margin-top:11px;font-size:11px;color:#8a97aa}
+.visual{display:flex;justify-content:center;position:relative;min-height:470px;align-items:center}
+.blob{
+  position:absolute;width:370px;height:370px;border-radius:48% 52% 60% 40%;
+  background:linear-gradient(145deg,#e2fbff,#eaf1ff);filter:blur(.2px);animation:morph 8s ease-in-out infinite
+}
+.phone{
+  position:relative;width:min(320px,78vw);aspect-ratio:10/19.2;border-radius:42px;padding:9px;
+  background:linear-gradient(145deg,#d7e4f4,#fff 42%,#9dc6ff);
+  box-shadow:0 32px 80px rgba(43,86,143,.24),0 0 0 1px rgba(91,128,177,.14);
+  transform:rotate(2deg);animation:float 5.5s ease-in-out infinite
+}
+.screen{
+  height:100%;border-radius:34px;overflow:hidden;background:#f7fbff;
+  border:1px solid rgba(32,83,143,.12);padding:18px 15px;position:relative
+}
+.notch{width:78px;height:22px;background:#12203a;border-radius:0 0 14px 14px;margin:-18px auto 16px}
+.appbar{display:flex;align-items:center;justify-content:space-between}
+.appname{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900}
+.appname img{width:29px;height:29px;border-radius:9px}
+.userdot{width:30px;height:30px;border-radius:50%;background:linear-gradient(145deg,#b8f8fb,#78a8ff);border:3px solid #fff}
+.welcome{margin-top:18px;color:#718096;font-size:10px}
+.welcome b{display:block;color:#172640;font-size:18px;margin-top:3px}
+.earn-card{
+  margin-top:15px;padding:17px;border-radius:22px;color:#fff;
+  background:linear-gradient(145deg,#113e9c,#2166ff 56%,#10cfe0);
+  box-shadow:0 16px 30px rgba(33,102,255,.22);position:relative;overflow:hidden
+}
+.earn-card:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-50px;top:-55px;background:rgba(255,255,255,.14)}
+.earn-label{font-size:9px;opacity:.75}.earn-value{font-size:25px;font-weight:900;margin-top:4px}
+.earn-pill{display:inline-block;margin-top:10px;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.14);font-size:9px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.quick div{background:#fff;border:1px solid #e8eff7;border-radius:14px;padding:11px 5px;text-align:center;box-shadow:0 7px 18px rgba(36,75,120,.05)}
+.quick b{display:block;font-size:15px;color:#2166ff}.quick span{font-size:8px;color:#8190a6}
+.activity{margin-top:13px;background:#fff;border:1px solid #e8eff7;border-radius:17px;padding:12px}
+.activity-title{display:flex;justify-content:space-between;font-size:10px;font-weight:850;margin-bottom:8px}
+.activity-title span{color:#8492a6;font-weight:650}
+.item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #eef3f8}
+.item:last-child{border-bottom:0}.item-icon{width:26px;height:26px;border-radius:9px;background:#eaf8f5;color:#13a976;display:grid;place-items:center;font-size:11px;font-weight:900}
+.item strong{display:block;font-size:9px}.item small{color:#96a1b1;font-size:8px}
+.item em{margin-left:auto;font-size:9px;color:#16a978;font-style:normal;font-weight:850}
+.section{padding:58px 0}
+.section-head{text-align:center;max-width:700px;margin:0 auto 27px}
+.section-head h2{font-size:clamp(31px,5vw,48px);line-height:1.02;letter-spacing:-.055em;margin:0 0 10px}
+.section-head p{color:var(--muted);line-height:1.65;margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{
+  background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:23px;padding:22px;
+  box-shadow:var(--shadow);transition:transform .22s ease,box-shadow .22s ease
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 28px 65px rgba(31,71,125,.16)}
+.icon{
+  width:43px;height:43px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(145deg,#e9fcff,#edf3ff);color:#2166ff;font-weight:950;margin-bottom:15px
+}
+.card h3{margin:0 0 7px;font-size:17px}.card p{margin:0;color:#758298;line-height:1.6;font-size:14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px}
+.step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:19px;display:flex;gap:13px;align-items:flex-start}
+.num{flex:0 0 34px;height:34px;border-radius:11px;background:#eff6ff;color:#2166ff;display:grid;place-items:center;font-weight:900;font-size:12px}
+.step strong{font-size:14px}.step p{font-size:12px;color:#7d899b;line-height:1.5;margin:4px 0 0}
+.cta{
+  margin:32px auto 65px;max-width:1020px;padding:30px;border-radius:28px;
+  background:linear-gradient(135deg,#0d347e,#2166ff 58%,#08cfe2);color:#fff;
+  box-shadow:0 25px 65px rgba(33,102,255,.22);display:flex;align-items:center;justify-content:space-between;gap:20px
+}
+.cta h2{font-size:29px;letter-spacing:-.045em;margin:0 0 6px}.cta p{margin:0;color:rgba(255,255,255,.78);font-size:14px}
+.cta .download{background:#fff;color:#1757d5;box-shadow:none}
+footer{text-align:center;color:#8996a9;font-size:11px;padding-bottom:28px}
+.toast{
+  position:fixed;left:50%;bottom:22px;z-index:50;transform:translate(-50%,20px);
+  opacity:0;pointer-events:none;background:#14233c;color:#fff;padding:12px 15px;border-radius:13px;
+  box-shadow:0 14px 38px rgba(10,28,57,.25);font-size:12px;transition:.25s
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.reveal.show{opacity:1;transform:none}
+@keyframes float{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+@keyframes morph{0%,100%{border-radius:48% 52% 60% 40%;transform:rotate(0)}50%{border-radius:58% 42% 45% 55%;transform:rotate(8deg)}}
+@keyframes shine{0%,55%{left:-90px}75%,100%{left:125%}}
+@media(max-width:820px){
+  .hero{padding-top:34px}.hero-grid{grid-template-columns:1fr;gap:24px}.hero-copy{text-align:center}
+  .hero p{margin-left:auto;margin-right:auto}.actions{justify-content:center}.visual{order:-1;min-height:400px}
+  .phone{width:285px}.blob{width:320px;height:320px}.cards,.steps{grid-template-columns:1fr}
+  .cta{flex-direction:column;text-align:center;padding:25px 20px}
+}
+@media(max-width:500px){
+  .wrap{width:calc(100% - 24px)}.nav{height:62px}.nav-download{padding:9px 12px}
+  .brand span{font-size:17px}.hero{padding-top:28px}.hero p{font-size:16px}
+  .actions{display:grid;grid-template-columns:1fr;width:100%}.download,.secondary{width:100%}
+  .visual{min-height:350px}.phone{width:258px;border-radius:36px}.screen{border-radius:29px}
+  .blob{width:285px;height:285px}.section{padding:45px 0}
+  .cta h2{font-size:25px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}.phone,.blob,.download:before{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Prwallet Pay">
+      <img src="assets/logo.png" alt="Prwallet Pay logo"><span>Prwallet Pay</span>
+    </a>
+    <a class="nav-download" href="#download">Get the app</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="badge"><i></i> Android app • Simple & mobile-first</span>
+      <h1>Turn your phone into a <span class="grad">smarter wallet.</span></h1>
+      <p>
+        Explore the Prwallet Pay experience for everyday wallet activity, available rewards
+        and app-based earning opportunities. Download the Android app to get started.
+      </p>
+      <div class="actions" id="download">
+        <a class="download" href="prwalletpay.apk" download="prwalletpay.apk" data-download="apk">
+          <span>↓</span> Download Prwallet Pay
+        </a>
+        <a class="secondary" href="#how">See how it works</a>
+      </div>
+      <div class="note">Android APK • Direct download • No signup on this landing page</div>
+    </div>
+
+    <div class="visual reveal" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="phone">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="appbar">
+            <div class="appname"><img src="assets/logo.png" alt=""><span>Prwallet Pay</span></div>
+            <div class="userdot"></div>
+          </div>
+          <div class="welcome">WELCOME BACK <b>Your wallet at a glance</b></div>
+          <div class="earn-card">
+            <div class="earn-label">AVAILABLE BALANCE</div>
+            <div class="earn-value">₹ 2,480.00</div>
+            <span class="earn-pill">Activity updated</span>
+          </div>
+          <div class="quick">
+            <div><b>＋</b><span>Earn</span></div>
+            <div><b>↗</b><span>Tasks</span></div>
+            <div><b>✓</b><span>Rewards</span></div>
+          </div>
+          <div class="activity">
+            <div class="activity-title">Recent activity <span>View all</span></div>
+            <div class="item"><div class="item-icon">✓</div><div><strong>Reward activity</strong><small>Completed</small></div><em>+₹120</em></div>
+            <div class="item"><div class="item-icon">↗</div><div><strong>Task activity</strong><small>Processed</small></div><em>+₹80</em></div>
+            <div class="item"><div class="item-icon">★</div><div><strong>Bonus</strong><small>Added to wallet</small></div><em>+₹50</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Everything feels easier on mobile.</h2>
+      <p>A clean, bright interface designed to make the app download and first step obvious without overwhelming the visitor.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="icon">₹</div><h3>Wallet-focused</h3><p>Keep your wallet activity and available rewards in one easy-to-follow experience.</p></article>
+      <article class="card"><div class="icon">✓</div><h3>Simple actions</h3><p>Clear navigation concepts for tasks, rewards and everyday activity.</p></article>
+      <article class="card"><div class="icon">⚡</div><h3>Fast start</h3><p>One prominent download action takes visitors directly to the supplied Android APK.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Get started in 3 simple steps.</h2>
+      <p>No clutter. The landing page keeps the journey focused on the Android app.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><div><strong>Download</strong><p>Tap the download button and save the Prwallet Pay APK.</p></div></div>
+      <div class="step reveal"><div class="num">02</div><div><strong>Install</strong><p>Open the APK on your Android device and complete your device's install prompts.</p></div></div>
+      <div class="step reveal"><div class="num">03</div><div><strong>Explore</strong><p>Open the app and use the available wallet, task and reward features.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap cta reveal">
+  <div>
+    <h2>Ready to explore Prwallet Pay?</h2>
+    <p>Download the Android app and continue on your phone.</p>
+  </div>
+  <a class="download" href="prwalletpay.apk" download="prwalletpay.apk" data-download="apk">Download APK →</a>
+</section>
+</main>
+
+<footer>© <span id="year"></span> Prwallet Pay · Android app landing page</footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+const LEAD_KEY='prwalletpay_lead_fired_v2';
+let lastTracked=0;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2400);
+}
+document.querySelectorAll('[data-download="apk"]').forEach(btn=>{
+  btn.addEventListener('click',function(e){
+    if(e.isTrusted===false){e.preventDefault();return}
+    const now=Date.now();
+    if(now-lastTracked<2200){e.preventDefault();toast('Download is already starting…');return}
+    lastTracked=now;
+    if(sessionStorage.getItem(LEAD_KEY)!=='1'){
+      if(typeof window.fbq==='function'){
+        window.fbq('track','Lead',{
+          content_name:'Prwallet Pay APK',
+          content_category:'app_download'
+        });
+      }
+      sessionStorage.setItem(LEAD_KEY,'1');
+    }
+  },{passive:false});
+});
+document.getElementById('year').textContent=new Date().getFullYear();
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('show')});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
